@@ -22,5 +22,6 @@ VMwareは、**ホスト型（タイプ2）と、ベアメタル型の両方の�
 **ホスト型は既存のOSの上で動作し、導入が容易**ですが、パフォーマンスはやや劣ります。
 ベアメタル型のESXiは、Hyper-V同様に高いパフォーマンスを発揮します
 
+![image](https://github.com/user-attachments/assets/df0aae2a-2291-4c53-99db-88179addb124)
 
 
