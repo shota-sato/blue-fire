@@ -23,3 +23,5 @@ VMwareは、**ホスト型（タイプ2）と、ベアメタル型の両方の�
 ベアメタル型のESXiは、Hyper-V同様に高いパフォーマンスを発揮します
 
 ![image](https://github.com/shota-sato/blue-fire/blob/e6fddb38f3da283d64191c02bc436f7a2fa22644/hyper-v/images/kasouka.PNG)
+![image](https://github.com/shota-sato/blue-fire/blob/bb2750c2c5056678350cc9402f604da9f15499d9/hyper-v/images/hypervisor-type.PNG)
+
