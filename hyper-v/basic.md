@@ -24,6 +24,5 @@ VMwareは、**ホスト型（タイプ2）と、ベアメタル型の両方の�
 
 ![image](https://github.com/user-attachments/assets/df0aae2a-2291-4c53-99db-88179addb124) 
 
-
-![kaouka](https://github.com/user-attachments/assets/hyper-v/kaouka.PNG)
+![kaouka]([https://github.com/user-attachments/assets/hyper-v/kaouka.PNG](https://github.com/shota-sato/blue-fire/blob/4d9f90b0228792a9492308e0c40c308abbe12dc0/hyper-v/kaouka.PNG))
 
