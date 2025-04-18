@@ -1,7 +1,11 @@
 # blue-fire
 日々の学習記録をここに記載。
 
-Markdownの基本構文
+## フォルダ作成
+new-folder/filename.txt
+
+---
+Markdownの基本構文↓↓↓
 
 見出し
 # 見出し1 (H1)
