@@ -1,7 +1,10 @@
 # blue-fire
 日々の学習記録をここに記載。
 
-[📘 basic.md を読む](./hyper-v/basic.md)
+
+[Markdown記載方法](./how-to-markdown.md)
+
+[Hyper-v.mdについて](./hyper-v/basic.md)
 
 
 ## フォルダ作成
