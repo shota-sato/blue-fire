@@ -53,6 +53,7 @@ aptに対するコマンドで、指定したパッケージをインストー�
 
 grub　linuxのブートローダー
 linuxが走り始める前に設定してくれる
+
 `GRUB_CMDLINE_LINUX_DEFAULT_="quiet splash"`
 
 ↓
