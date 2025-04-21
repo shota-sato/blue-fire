@@ -34,7 +34,7 @@ Ubuntuには、デスクトップ版（GUI）とサーバー版（CLI）があ�
 ホームディレクトリ（~）にいることを示すプロンプト
 ![フォルダ構成](https://github.com/user-attachments/assets/478015ed-9901-4f10-b00e-2aea260169a0)
 
-`rwxrwxrwx`
+`rwxrwxrwx`  
 所有者、グループ、その他のユーザーの読み取り（r）、書き込み（w）、実行（x）権限を示す
 
 ### etc
