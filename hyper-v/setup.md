@@ -59,4 +59,7 @@ linuxが走り始める前に設定してくれる
 ↓
 iボタンで編集モードにして「quiet splash」削除
 
+`GRUB_CMDLINE_LINUX_DEFAULT="video=hyperv_fb:1920x1080"`
+
+`sudo update grub`
 
