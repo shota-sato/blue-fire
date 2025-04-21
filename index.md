@@ -6,6 +6,7 @@
 
 [linux](./linux/about-linux.md)
 
+[PL/SQL](plsql/about-plsql.md)
 
 
 ## フォルダ作成
