@@ -1,7 +1,7 @@
 # Linuxとは
 
 
-##CentOSとUbuntuとの違い
+## CentOSとUbuntuとの違い
 両方とも非常に人気のあるLinuxディストリビューション
 
 ### CentOS
@@ -15,9 +15,9 @@ DebianはLinux界隈では、もっとも規模の大きいコミュニティ。
 実際とても使いやすくて、Windowsの代わりとして使えるようなOSになっている。
 
 ### パッケージ管理のしかたの違い
-CentOSは、**yum（Yellowdog Updater Modified）**または 
-**dnf（Dandified Yum）**と呼ばれるパッケージ管理システムを使用します。
-Ubuntuは、**APT（Advanced Package Tool）**を使用します。
+CentOSは、**yum（Yellowdog Updater Modified）** または 
+**dnf（Dandified Yum）** と呼ばれるパッケージ管理システムを使用します。
+Ubuntuは、**APT（Advanced Package Tool**を使用します。
 
 ### ユーザーインターフェースの違い
 CentOSは、通常、GUIを使用せずにコマンドラインベースで操作。
