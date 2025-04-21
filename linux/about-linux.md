@@ -1,4 +1,4 @@
-#Linuxとは
+# Linuxとは
 
 
 ##CentOSとUbuntuとの違い
@@ -15,5 +15,13 @@ DebianはLinux界隈では、もっとも規模の大きいコミュニティ。
 実際とても使いやすくて、Windowsの代わりとして使えるようなOSになっている。
 
 ### パッケージ管理のしかたの違い
-CentOSは、**yum（Yellowdog Updater Modified）**または **dnf（Dandified Yum）**と呼ばれるパッケージ管理システムを使用します。
+CentOSは、**yum（Yellowdog Updater Modified）**または 
+**dnf（Dandified Yum）**と呼ばれるパッケージ管理システムを使用します。
 Ubuntuは、**APT（Advanced Package Tool）**を使用します。
+
+### ユーザーインターフェースの違い
+CentOSは、通常、GUIを使用せずにコマンドラインベースで操作。
+Ubuntuには、デスクトップ版（GUI）とサーバー版（CLI）があります。
+デフォルトでは、デスクトップ版が提供されますが、サーバー版も利用できます。
+
+
