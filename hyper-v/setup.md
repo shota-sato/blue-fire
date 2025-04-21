@@ -23,6 +23,7 @@
 ![image](https://github.com/user-attachments/assets/78b7fc02-5c91-4135-be4d-d2853ea335f8)
 
 Hyper-V　のツールを使う上で必要なパッケージのインストール
+
 `sudo apt install linux-virtual linux-cloud-tools-virtual linux-tools-virtual`
 
 `sudo`
