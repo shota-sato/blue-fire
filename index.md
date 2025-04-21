@@ -1,4 +1,4 @@
-# アラサーエンジニアの学習記録
+# IT学習記録
 
 [Markdown記載方法](./how-to-markdown.md)
 
