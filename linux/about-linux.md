@@ -15,9 +15,9 @@ DebianはLinux界隈では、もっとも規模の大きいコミュニティ。
 実際とても使いやすくて、Windowsの代わりとして使えるようなOSになっている。
 
 ### パッケージ管理のしかたの違い
-CentOSは、__yum（Yellowdog Updater Modified）__または 
-__dnf（Dandified Yum）__と呼ばれるパッケージ管理システムを使用します。
-Ubuntuは、__APT（Advanced Package Tool）__を使用します。
+CentOSは、\_\_yum（Yellowdog Updater Modified）\_\_または 
+\_\_dnf（Dandified Yum）\_\_と呼ばれるパッケージ管理システムを使用します。
+Ubuntuは、\_\_APT（Advanced Package Tool）\_\_を使用します。
 
 ### ユーザーインターフェースの違い
 CentOSは、通常、GUIを使用せずにコマンドラインベースで操作。
