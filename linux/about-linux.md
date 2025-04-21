@@ -28,7 +28,8 @@ Ubuntuには、デスクトップ版（GUI）とサーバー版（CLI）があ�
 ##フォルダ構成
 
 ```○○○○@○○○○-Virtual-Machine:~$ pwd
-/home/○○○○```
+/home/○○○○
+```
 現在のユーザー（○○○○）が、ホスト名（○○○○-Virtual-Machine）の
 ホームディレクトリ（~）にいることを示すプロンプト
 ![フォルダ構成](https://github.com/user-attachments/assets/478015ed-9901-4f10-b00e-2aea260169a0)
