@@ -16,3 +16,6 @@
 ![image](https://github.com/user-attachments/assets/0cb5e629-edc6-4e27-bb2a-8763647c8653)
 
 ![hello](https://github.com/user-attachments/assets/b6ec8da8-46c7-4e09-8322-688de97b3d45)
+
+以降全てskip
+![settei](https://github.com/user-attachments/assets/f30b6884-f6bf-4336-8330-89b56ff4fe8d)
