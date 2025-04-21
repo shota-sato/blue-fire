@@ -21,3 +21,29 @@
 
 ### 右クリックで「Open Terminal」
 ![image](https://github.com/user-attachments/assets/78b7fc02-5c91-4135-be4d-d2853ea335f8)
+
+Hyper-V　のツールを使う上で必要なパッケージのインストール
+`sudo apt install linux-virtual linux-cloud-tools-virtual linux-tools-virtual`
+
+`sudo`
+管理者権限でコマンドを実行するためのコマンド。システムの設定やソフトウェアのインストールが可能。
+
+`apt`
+UbuntuやDebian系のパッケージ管理ツール。
+ソフトウェアのインストール、アップデート、削除を行うために使用。
+
+`install`
+aptに対するコマンドで、指定したパッケージをインストールすることを指示。
+
+`linux-virtual`
+仮想マシン環境で動作するために最適化されたLinuxカーネルのパッケージ。
+仮想化環境でのパフォーマンスが向上します。
+
+`linux-cloud-tools-virtual`
+クラウド環境での管理や操作に必要なツールを含むパッケージ。
+特に、クラウドサービスでの仮想マシンの管理に役立ちます。
+
+`linux-tools-virtual`
+仮想マシン環境でのLinuxツールを提供するパッケージ。
+パフォーマンスの監視や管理に役立つツールが含まれています。
+
