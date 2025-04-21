@@ -1,4 +1,4 @@
-#環境構築
+# 環境構築
 
 スタートメニューで選択
 再起動
@@ -9,3 +9,10 @@
 
 
 ![ubuntu](https://github.com/user-attachments/assets/8e4a4d2e-478b-4558-a9e2-509d0f5a1b12)
+
+![access](https://github.com/user-attachments/assets/85a07e70-62bf-40c1-b3a5-8a32bcf3cf85)
+
+
+![image](https://github.com/user-attachments/assets/0cb5e629-edc6-4e27-bb2a-8763647c8653)
+
+![hello](https://github.com/user-attachments/assets/b6ec8da8-46c7-4e09-8322-688de97b3d45)
