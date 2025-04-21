@@ -51,11 +51,10 @@ aptに対するコマンドで、指定したパッケージをインストー�
 ### viエディタを使用
 ![image](https://github.com/user-attachments/assets/9e274aa3-88a7-48af-80c4-99460153becc)
 
-
-![クイック](https://github.com/user-attachments/assets/39095f20-6856-482a-8018-8c3aa723e55b)
 grub　linuxのブートローダー
 linuxが走り始める前に設定してくれる
 `GRUB_CMDLINE_LINUX_DEFAULT_="quiet splash"`
+
 ↓
 iボタンで編集モードにして「quiet splash」削除
 
