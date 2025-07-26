@@ -8,3 +8,7 @@
  `Multi Cursor Modifier`
 
  ![image](https://github.com/user-attachments/assets/0c3b5636-5240-4d7a-981b-a20c4a4bd742)
+
+## 起動
+'code .'
+
