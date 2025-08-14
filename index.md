@@ -2,6 +2,8 @@
 
 [Markdown記載方法](./how-to-markdown.md)
 
+[Visual Studio Code](./vscode/basic.md)
+
 [Hyper-v](./hyper-v/basic.md)
 
 [linux](./linux/about-linux.md)
