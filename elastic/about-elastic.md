@@ -22,7 +22,7 @@
 
 
 ## Ingest Pipeline
-
+### dot_expanderプロセッサー
 ```
 {
   "dot_expander": {
