@@ -55,4 +55,14 @@ CriteriaQuery query = new CriteriaQuery(
 );
 ```
 
-
+```
+.greaterThanEqual(JsonData.of(from.format(FORMATTER)))
+```
+「この値以上 (>=)」という条件を追加  
+from は ZonedDateTime 型なので、文字列（ISO形式 "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"）にフォーマットして JSON 値に変換  
+例: 2025-08-19T10:00:00.000+09:00  
+```
+.lessThan(JsonData.of(to.format(FORMATTER)))
+```
+「この値未満 (<)」という条件を追加  
+to も同様に文字列に変換して使う  
