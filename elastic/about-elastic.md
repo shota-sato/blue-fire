@@ -19,3 +19,33 @@
 
 
 ![image](https://github.com/user-attachments/assets/e8f9405c-2f1d-44c9-b3fc-94fb43961e58)
+
+
+## Ingest Pipeline
+
+'''
+{
+  "dot_expander": {
+    "field": "*",
+    "ignore_failure": true
+  }
+},
+'''
+「ドットを含むフィールド名」を オブジェクトとして展開する役割を持ちます  
+
+例）入力ドキュメント
+'''
+{
+  "user.name": "Shota",
+  "user.age": 30
+}
+'''
+dot_expander 適用後
+'''
+{
+  "user": {
+    "name": "Shota",
+    "age": 30
+  }
+}
+'''
