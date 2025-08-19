@@ -7,6 +7,8 @@ public class FepBuyInfoEntity { ... }
 RDB の JPA で言う @Entity に近いもの
 
 
+
+# ElasticsearchOperations
 ```
 public interface ElasticsearchOperations extends DocumentOperations, SearchOperations, ScriptOperations { ... }
 ```
