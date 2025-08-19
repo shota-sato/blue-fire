@@ -23,29 +23,29 @@
 
 ## Ingest Pipeline
 
-'''
+```
 {
   "dot_expander": {
     "field": "*",
     "ignore_failure": true
   }
 },
-'''
+```
 「ドットを含むフィールド名」を オブジェクトとして展開する役割を持ちます  
 
 例）入力ドキュメント
-'''
+```
 {
   "user.name": "Shota",
   "user.age": 30
 }
-'''
+```
 dot_expander 適用後
-'''
+```
 {
   "user": {
     "name": "Shota",
     "age": 30
   }
 }
-'''
+```
