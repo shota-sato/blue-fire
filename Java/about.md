@@ -35,3 +35,20 @@ interface
  - すべてが「抽象メソッド」や「定数」の集合（Java 8以降はdefault/staticメソッドも可）  
 abstract class  
  - 「具象メソッド」も「フィールド」も持てるので、部分的に実装を共通化したいときに便利。
+
+# スーパークラス
+```
+class Animal {
+    void makeSound() {
+        System.out.println("Some sound...");
+    }
+}
+```
+```
+class Dog extends Animal {
+    void makeSound() {
+        super.makeSound();   // ← 親クラス Animal の makeSound() を呼ぶ
+        System.out.println("Woof!");
+    }
+}
+```
