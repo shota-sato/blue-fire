@@ -52,3 +52,35 @@ class Dog extends Animal {
     }
 }
 ```
+
+とりあえずコンパイル
+```
+public abstract class RecruitCompletionRateRepositoryImpl implements CompletionRateRepository {
+
+  @Override
+  public CompletionRate calculateCompletionRate(ZonedDateTime from, ZonedDateTime to) {
+
+    return new CompletionRate(null,null,null,null,null,null,null);
+}
+
+public record CompletionRate(
+        ZonedDateTime time,
+        Long total,
+        Long success,
+        Long failure,
+        String channelCd,
+        String payMethod,
+        Duration durationMinutes) {
+
+    public Double successRate() {
+        //total が null なら 0L、そうでなければ total自身
+        Long totalInternal = (total == null) ? 0L : total;
+        Long successInternal = (success == null) ? 0L : success;
+        Long failureInternal = (failure == null) ? 0L : failure;
+
+        //total=0 の場合、successrateは0.0
+        return (totalInternal <= 0) ? 0.0 : (double) successInternal / totalInternal;
+    }
+}
+
+```
