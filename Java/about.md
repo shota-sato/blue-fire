@@ -1,3 +1,44 @@
+クラス
+
+フィールド（変数）とメソッド（処理）**を持つことができ、オブジェクト（インスタンス）を作れます
+public class Animal {
+    public void speak() {
+        System.out.println("Some sound");
+    }
+}
+
+他には
+interface（契約だけ）
+abstract class（部分的に実装を持つ抽象クラス）
+enum（定数の集合）
+record（データ用のクラス）
+
+
+
+メソッド
+
+Javaのメソッドには必ず戻り値の型を宣言する必要があります
+
+// int型を返すメソッド
+public int add(int a, int b) {
+    return a + b;  // returnで必ずintを返す
+}
+
+// String型を返すメソッド
+public String greet(String name) {
+    return "Hello, " + name;
+}
+
+// 戻り値なし
+public void printHello() {
+    System.out.println("Hello!");
+}
+
+戻り値と return の関係
+	•	戻り値の型がある場合 → return でその型の値を返さなければならない
+	•	void の場合 → return は不要（書いてもいいが値は返せない）
+
+
 # 抽象クラス (abstract class)
 抽象クラスは インスタンスを直接生成できません  
 共通の性質や基本的な振る舞いを定義しつつ、一部はサブクラスで必ず実装させるようにできます  
@@ -30,6 +71,8 @@ class Cat extends Animal {
     }
 }
 ```
+
+
 ## interface との違い
 interface   
  - すべてが「抽象メソッド」や「定数」の集合（Java 8以降はdefault/staticメソッドも可）  
@@ -84,3 +127,32 @@ public record CompletionRate(
 }
 
 ```
+
+プリミティブ型 (primitive type)
+Javaに組み込まれている「基本データ型」で、軽くて高速。
+値そのものを直接扱います
+
+ラッパー型 (wrapper class)
+プリミティブ型を オブジェクトとして扱うためのクラス。
+java.lang パッケージに用意されています。
+
+なぜラッパー型が必要？
+	1.	コレクションに入れるため
+Javaのコレクション（ArrayListなど）はオブジェクトしか扱えません。
+だから int ではなく Integer を使う必要があります。
+List<Integer> list = new ArrayList<>();
+list.add(10); // OK（オートボクシング）
+
+nullを扱える
+プリミティブ型には null を入れられませんが、ラッパー型はオブジェクトなので null 可能
+
+Integer i = null;   // OK
+int j = null;       // コンパイルエラー
+
+ユーティリティメソッドが使える
+例えば Integer.parseInt("123") のように、文字列を数値に変換できる。
+int n = Integer.parseInt("123");  // 文字列→int
+
+
+
+
