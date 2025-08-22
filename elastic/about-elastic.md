@@ -1,7 +1,6 @@
-# 第46回Elasticsearch勉強会 - Feb 16, 2022 - Elastic Meetup
 
-## Ingest Pipeline
-### dot_expanderプロセッサー
+# Ingest Pipeline
+## dot_expanderプロセッサー
 ```
 {
   "dot_expander": {
