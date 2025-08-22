@@ -185,4 +185,61 @@ int n = Integer.parseInt("123");  // 文字列→int
 これは親クラスのメソッドを上書きしている  
 シグネチャ（メソッド名や引数の型）が間違っていた場合、コンパイルエラーになる。  
 
+# record
+**Java 16 で正式導入**された「データキャリア専用のクラス定義方法」  
+「**値を保持するだけのクラス**を、超簡潔に書ける構文」  
+従来の書き方  
+```
+public class CompletionRate {
+    private final ZonedDateTime time;
+    private final Long total;
+    private final Long success;
+    private final Long failure;
+
+    // コンストラクタ
+    public CompletionRate(ZonedDateTime time, Long total, Long success, Long failure) {
+        this.time = time;
+        this.total = total;
+        this.success = success;
+        this.failure = failure;
+    }
+
+    // getter
+    public ZonedDateTime getTime() { return time; }
+    public Long getTotal() { return total; }
+    public Long getSuccess() { return success; }
+    public Long getFailure() { return failure; }
+
+    // equals / hashCode / toString も書く…
+}
+```
+record を使うと同じことが 1行で定義  
+```
+public record CompletionRate(
+    ZonedDateTime time,
+    Long total,
+    Long success,
+    Long failure,
+    String channelCd,
+    String payMethod,
+    Duration durationMinutes) { }
+```
+
+## private 
+外から直接アクセスできない（カプセル化）
+## final
+一度値を入れたら変えられない（不変オブジェクトになる）
+
+継承はクラスだけでなくインターフェース同士でもできます
+クラス → クラスを extends できる（ただし単一継承のみ）
+インターフェース → インターフェースを extends できる（複数継承OK）
+
+extends → 「親の設計図を引き継ぐ」
+implements → 「仕様書に従って作る」
+インターフェース = 契約書（「このメソッドを持つこと！」だけ書いてある）
+implements = 契約を守って、実際の中身を書くこと
+
+
+Dration は Java 8 以降の java.time パッケージにある、
+“時間量（経過時間）” を表すクラスです。秒とナノ秒の精度で、不変（immutable）
 
