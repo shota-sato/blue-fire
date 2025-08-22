@@ -66,3 +66,31 @@ from は ZonedDateTime 型なので、文字列（ISO形式 "yyyy-MM-dd'T'HH:mm:
 ```
 「この値未満 (<)」という条件を追加  
 to も同様に文字列に変換して使う  
+
+
+# NativeQuery
+```
+NativeQuery nativeQuery = new NativeQueryBuilder()
+        .withQuery(QueryBuilders.match("title", "Java"))
+        .build();
+```
+Javaのオブジェクト指向的な「ビルダーパターン」を使って **クエリ（検索条件オブジェクト）を組み立てている**  
+**「Elasticsearch の Java 用クライアント（Spring Data Elasticsearch など）」でよく使われる書き方。**   
+SQLの文字列を書く代わりに、Javaの型安全なオブジェクトとしてクエリを組み立てられるのがメリット  
+ - NativeQuery ： **クエリを表すクラス**
+ - NativeQueryBuilder ： **NativeQuery を組み立てるためのビルダー（補助クラス）**
+ - .withQuery(...) ：**検索条件を設定**
+ - .build() ：**NativeQuery インスタンスを生成**
+   
+.withAggregation("completion_rate", …)
+意味：ビルダーに 1個の集計（aggregation） を追加します。
+第1引数 "completion_rate"：その集計に付ける名前（キー）。
+レスポンスでも同じキーで返ってくるので、結果を取り出すときに使います。
+```
+{
+  "aggs": {
+    "completion_rate": { …ここに集計の本体… }
+  }
+}
+```
+
