@@ -1,3 +1,82 @@
+# RDBとの比較
+index：テーブル  
+document：レコード  
+_id：主キー  
+ - インデックスは複数のドキュメントを保持します。  
+ - 各ドキュメントにはユニークな _id が付きます。  
+
+# _idの上書き保存
+```
+POST /index-name/_doc/{id}
+```
+この形式でリクエストを送ると：
+id が存在しない → 新規作成
+id が存在する → 上書き保存（オーバーライド）
+
+例 1回目投げてみる
+```
+POST stat_test/_doc/id-2025-08-25T01:08:25.000Z
+{
+  "time": "2025-08-25T01:08:25.000Z",
+  "unit": "id",
+  "values": {
+    "total": 100,
+    "success": 90,
+    "failure": 10
+  }
+}
+```
+返却値
+```
+{
+  "_index": "stat_test",
+  "_id": "id-2025-08-25T01:08:25.000Z",
+  "_version": 1,
+  "result": "created",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 0,
+  "_primary_term": 1
+}
+```
+"_index": "stat_test" なのでData view作成
+<img width="1426" height="322" alt="image" src="https://github.com/user-attachments/assets/a26f1965-ab4f-400d-9e04-09b9226b689c" />  
+<img width="801" height="397" alt="image" src="https://github.com/user-attachments/assets/cde25eb3-651a-43fa-ae1c-a2728c5b48f0" />  
+2回目  
+```
+POST stat_test/_doc/ds.aset.tps-2025-08-25T01:08:25.000Z
+{
+  "time": "2025-08-25T01:08:25.000Z",
+  "unit": "ds.aset.tps",
+  "environment": "production",
+  "values": {
+    "total": 200,
+    "success": 180,
+    "failure": 20
+  }
+}
+```
+返却値
+```
+{
+  "_index": "stat_test",
+  "_id": "ds.aset.tps-2025-08-25T01:08:25.000Z",
+  "_version": 2,
+  "result": "updated",
+  "_shards": {
+    "total": 2,
+    "successful": 1,
+    "failed": 0
+  },
+  "_seq_no": 1,
+  "_primary_term": 1
+}
+```
+<img width="786" height="380" alt="image" src="https://github.com/user-attachments/assets/eaf1bab2-4bfd-43f1-a8be-1121d4b8603d" />  
+上書きされている  
 
 # Ingest Pipeline
 ## dot_expanderプロセッサー
@@ -105,8 +184,39 @@ date_histogram バケット
 }
 ```
 
+# DSL
+Domain Specific Language（ドメイン固有言語） の略  
+Elasticsearch でいう「DSL」は**Query DSL（クエリ DSL）**  
+
+gte	= greater than = 以上（≧）  
+```
+"gte": "2025-08-22T18:06:37.527+09:00"
+```
+lt = less than = 未満（<）
+```
+"lt": "2025-08-22T18:16:37.527+09:00"
+```
+"range"：範囲条件で検索せよ
+```
+{ "range": { "insert_date": { "gte": "2025-08-22T18:06:37.527+09:00" } } },
+{ "range": { "insert_date": { "lt":  "2025-08-22T18:16:37.527+09:00" } } }
+```
+## bool クエリとは？
+複数のクエリ条件を論理演算（AND、OR、NOT）を使って組み合わせるための構造。  
+主に以下の4つの要素を組み合わせる形で使います  
+must：必ず満たすべき条件（AND）  
+filter：must と同じくANDですが、関連性スコアには影響せずキャッシュ対象（スコア不要な場合におすすめ）  
+should：いずれか満たせばよい条件（OR。ただし minimum_should_match によって制御可能）  
+must_not：満たしてはいけない条件（NOT）  
+**must は AND に相当し、should は OR に相当する**  
+公式ドキュメント  
+https://www.elastic.co/guide/en/elasticsearch/reference/8.19/query-dsl-bool-query.html?utm_source=chatgpt.com
+
+
+
+
 # Dev tools
-Kibana の Dev Tools（Console）に投げるときは、**HTTP 行やヘッダーは不要**で、**相対パスだけ**を書きます
+Kibana の Dev Tools（Console）に投げるときは、**HTTP 行やヘッダーは不要**で、**相対パスだけ**を書きます  
 curlで実行  
 ```
 curl -X POST "https://エンドポイント/index名-*/_search?search_type=query_then_fetch&typed_keys=true" `
