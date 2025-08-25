@@ -204,13 +204,41 @@ lt = less than = 未満（<）
 ## bool クエリとは？
 複数のクエリ条件を論理演算（AND、OR、NOT）を使って組み合わせるための構造。  
 主に以下の4つの要素を組み合わせる形で使います  
-must：必ず満たすべき条件（AND）  
-filter：must と同じくANDですが、関連性スコアには影響せずキャッシュ対象（スコア不要な場合におすすめ）  
-should：いずれか満たせばよい条件（OR。ただし minimum_should_match によって制御可能）  
-must_not：満たしてはいけない条件（NOT）  
+ - must：必ず満たすべき条件（AND）  
+ - filter：must と同じくANDですが、関連性スコアには影響せずキャッシュ対象（スコア不要な場合におすすめ）  
+ - should：いずれか満たせばよい条件（OR。ただし minimum_should_match によって制御可能）  
+ - must_not：満たしてはいけない条件（NOT）  
 **must は AND に相当し、should は OR に相当する**  
 公式ドキュメント  
 https://www.elastic.co/guide/en/elasticsearch/reference/8.19/query-dsl-bool-query.html?utm_source=chatgpt.com
+```
+        { "bool": { "must": [
+            { "range": { "insert_date": { "gte": "2025-08-22T18:06:37.527+09:00" } } },
+            { "range": { "insert_date": { "lt":  "2025-08-22T18:16:37.527+09:00" } } }
+        ]}},
+```
+## query
+検索条件のトップレベル定義  
+中に bool や range や match などを組み合わせて 対象ドキュメントを絞り込む  
+集計 (aggs) は query の結果セットに対して行われる  
+```
+  "query": {                        // ← 抽出条件（10分間 + 必須フィールド）
+    "bool": {
+      "must": [
+        { "bool": { "must": [
+            { "range": { "insert_date": { "gte": "2025-08-22T18:06:37.527+09:00" } } },
+            { "range": { "insert_date": { "lt":  "2025-08-22T18:16:37.527+09:00" } } }
+        ]}},
+        { "exists": { "field": "coupler_sequence" } }
+      ]
+    }
+  },
+```
+## size: 0 の意味
+Elasticsearch の _search API には 検索結果（ヒット）と集計結果（aggregations）の両方を返す仕組みがあります。  
+size は「何件の 検索結果（ドキュメント本体） を返すか」を指定するパラメータ。  
+size: 0 にすると、ドキュメント本体は返さず、**集計結果だけ返す**ようになります。
+<img width="1028" height="590" alt="image" src="https://github.com/user-attachments/assets/38b129af-dee9-4bcb-83ec-916bc7a2bff8" />
 
 
 
