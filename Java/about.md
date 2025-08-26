@@ -391,15 +391,15 @@ Java で最初から使える String, List, Map, Integer, LocalDate などは
 具体的には Java 標準ライブラリ（java.base モジュールなど）として提供されています。
 
 # JDKに含まれているクラスのパッケージ
- - java.lang（自動importされる）
+ - java.lang（自動importされる）  
    String, Object, Math, Integer, Double など
 
- - java.util
+ - java.util  
    List, Map, Set, ArrayList, HashMap など
 
- - java.time
+ - java.time  
    LocalDate, LocalTime, ZonedDateTime など
 
- - java.io / java.nio
+ - java.io / java.nio  
    File, InputStream, BufferedReader など
 
