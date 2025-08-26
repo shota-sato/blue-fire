@@ -243,3 +243,17 @@ implements = 契約を守って、実際の中身を書くこと
 Dration は Java 8 以降の java.time パッケージにある、
 “時間量（経過時間）” を表すクラスです。秒とナノ秒の精度で、不変（immutable）
 
+
+Map は キーと値のペア（Key-Value） を扱うコレクションです。
+	•	配列やリストは「順番で要素を管理」しますが、Mapは「キーで要素を管理」します。
+	•	同じキーは一度しか保持できません（キーは一意）。
+	•	値は重複してもOKです。
+
+Map<String, Integer> scores = new HashMap<>();
+scores.put("Alice", 90);
+scores.put("Bob", 75);
+scores.put("Charlie", 85);
+
+System.out.println(scores.get("Alice")); // 90
+
+
