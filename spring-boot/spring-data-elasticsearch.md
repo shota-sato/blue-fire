@@ -93,4 +93,44 @@ SQLの文字列を書く代わりに、Javaの型安全なオブジェクトと�
   }
 }
 ```
+## ElasticsearchOperations
+https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/core/SearchOperations.html?utm_source=chatgpt.com
+```
+SearchOperations     (親, インターフェース)
+       ▲
+       │ extends
+       │
+ElasticsearchOperations  (子, インターフェース)
+```
+
+```
+SearchHits<AEntity> hits = elasticsearchOperations.search(nativeQuery, AEntity.class);
+```
+   
+```
+elasticsearchOperations.search(...)
+```
+Spring Data Elasticsearch が提供する検索API 
+内部で Elasticsearch の _search エンドポイントに HTTP リクエストを投げて、結果を受け取ります  
+第1引数: nativeQuery  
+→ 実際の検索条件（JSON に変換される）  
+第2引数: AEntity.class  
+→ 検索結果をどのエンティティ型にマッピングするかを指定  
+実際には ElasticsearchOperations が SearchOperations を継承しているから使える メソッド  
+```
+SearchHits<AEntity>
+```
+戻り値　検索結果全体を表すオブジェクト  
+単純な List<AEntity> ではなく、Elasticsearch のメタ情報も保持しています。 
+
+### SearchHits が持っている主な情報
+ - getSearchHits() → 個々のヒット (SearchHit<AEntity>) のリスト
+   _source が AsetEntity に変換されたオブジェクト  
+ - _id や _score などのメタ情報  
+ - .getTotalHits() → マッチした件数  
+ - .getAggregations() → 集計結果 (Aggregations)  
+
+
+key_as_string が出るのは date_histogram（や terms/date_range など） の集計結果だけ
+filter 集計や terms 集計だけでは 時刻情報はつかないので key_as_string は出ません。
 
