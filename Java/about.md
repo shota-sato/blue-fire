@@ -70,38 +70,132 @@ class Cat extends Animal {
     }
 }
 ```
+
+## 単一継承
+```
+   Parent
+   ---------
+   + methodP()
+
+       ▲
+       |
+   Child
+   ---------
+   + methodC()
+```
+クラス同士は 1つだけ継承 (extends) が可能  
+
+## クラスの多重継承NG
+```
+   ParentA        ParentB
+   ---------      ---------
+   + methodA()    + methodB()
+
+       ▲     ▲
+        \   /
+         \ /
+        Child
+   -----------------
+   + methodA()
+   + methodB()
+```
+Java では このように複数のクラスを同時に継承することはできません  
+
+
+
 # インタフェース
-**「契約（仕様書）」**だけを書くもの
-**インスタンス化は抽象クラスと同じで出来ない**
+**「契約（仕様書）」** だけを書くもの  
+「このメソッドを必ず持ってください」という宣言  
+メソッドの名前・引数・戻り値は定義するが、中身は書かない  
+インターフェースは**クラスの一部でも逆でもなく、別の仕組み**  
+**インスタンス化は抽象クラスと同じで出来ない**    
+
+## クラスがインターフェースを「実装」するとは
+```
+interface Animal {
+    void eat();   // 食べるメソッド
+    void sleep(); // 寝るメソッド
+}
+
+class Dog implements Animal {
+    @Override
+    public void eat() {
+        System.out.println("ドッグフードを食べる");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("丸まって寝る");
+    }
+
+    // クラス独自のメソッドも書ける
+    public void bark() {
+        System.out.println("ワンワン！");
+    }
+}
+```
+
+## ポリモーフィズム（多態性）とは
+同じインターフェースや親クラス型で扱っても、実際の中身によって振る舞いが変わること  　　
+**インターフェースにメソッドが2個あれば、必ず2個以上は実装しなきゃいけない。**  
+でも クラスは自由にメソッドを増やせる。 
+例1  インタフェースで実装
+```
+interface Animal {
+    void eat();
+    void sleep();
+}
+
+class Dog implements Animal {
+    @Override
+    public void eat() {
+        System.out.println("ドッグフードを食べる");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("丸まって寝る");
+    }
+
+    // クラス独自のメソッド
+    public void bark() {
+        System.out.println("ワンワン！");
+    }
+}
+```
+例2 クラスを使って継承する
+```
+class Animal {
+    void speak() {
+        System.out.println("???");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void speak() {
+        System.out.println("ワンワン！");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void speak() {
+        System.out.println("ニャー！");
+    }
+}
+```
+
+
 
 ## interface との違いと使い分け
-interface   
+interface  
  - すべてが「抽象メソッド」や「定数」の集合（Java 8以降はdefault/staticメソッドも可）  
 abstract class  
  - 「具象メソッド」も「フィールド」も持てるので、部分的に実装を共通化したいときに便利。
   
 抽象クラス = 「グループの共通部分をまとめる」  　
 インタフェース = 「機能の契約を定める」  
-
-項目
-抽象クラス
-インタフェース
-目的
-「共通の性質をまとめる」
-「機能の契約を定める」
-継承
-1つしか継承できない（単一継承）
-複数実装できる
-メソッド
-抽象メソッドと通常メソッドを両方持てる
-（基本は）抽象メソッドのみ（Java 8以降はdefaultやstaticで中身も可）
-フィールド
-持てる（状態を共有できる）
-定数（public static final）しか持てない
-使い方のイメージ
-「○○という共通の性質を持ったグループ」
-「○○できる能力（機能）の契約」
-
 
 # スーパークラス
 ```
@@ -244,19 +338,68 @@ Dration は Java 8 以降の java.time パッケージにある、
 “時間量（経過時間）” を表すクラスです。秒とナノ秒の精度で、不変（immutable）
 
 
-Map は キーと値のペア（Key-Value） を扱うコレクションです。
-	•	配列やリストは「順番で要素を管理」しますが、Mapは「キーで要素を管理」します。
-	•	同じキーは一度しか保持できません（キーは一意）。
-	•	値は重複してもOKです。
-
+# Mapインターフェース
+型引数が2つ必要  
+キーと値のペア（Key-Value） を扱うコレクション    
+ - 配列やリストは「順番で要素を管理」しますが、Mapは「キーで要素を管理」します。
+ - 同じキーは一度しか保持できません（キーは一意）。
+ - 値は重複してもOK
+Map のキーや値に プリミティブ型は直接使えない ので、代わりに**ラッパー型 を使う必要があります**    
+https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Map.html  
+```
 Map<String, Integer> scores = new HashMap<>();
 scores.put("Alice", 90);
 scores.put("Bob", 75);
 scores.put("Charlie", 85);
 
 System.out.println(scores.get("Alice")); // 90
-
+```
 
 # オブジェクトとは
 クラスから作られた実体（実際に動くもの） のこと  
 クラスは「設計図」、オブジェクトは「その設計図から作られた製品」とよく例えられます。
+
+# ofメソッド
+Java 9+ で追加された不変コレクション生成のための便利メソッド  
+of メソッドは static メソッドとして以下に用意されています
+ - List.of(...)  
+ - Set.of(...)   
+ - Map.of(...)  
+つまり「インスタンス化用のショートカット」として使えます  
+```
+List<String> fruits = List.of("apple", "banana", "cherry");
+System.out.println(fruits); // [apple, banana, cherry]
+
+Set<Integer> numbers = Set.of(1, 2, 3, 4, 5);
+System.out.println(numbers); // [1, 2, 3, 4, 5]
+
+Map<String, Integer> ages = Map.of(
+    "Alice", 20,
+    "Bob", 25,
+    "Charlie", 30
+);
+System.out.println(ages); // {Alice=20, Bob=25, Charlie=30}
+```
+
+# String 型ってなに？  
+String は Java に用意されている 文字列を扱うクラス  
+"Hello" のような文字列は String クラスのオブジェクト  
+Java には標準でたくさんのクラスがある  
+
+Java で最初から使える String, List, Map, Integer, LocalDate などは  
+すべて JDK（Java Development Kit） に入っています。  
+具体的には Java 標準ライブラリ（java.base モジュールなど）として提供されています。
+
+# JDKに含まれているクラスのパッケージ
+ - java.lang（自動importされる）
+   String, Object, Math, Integer, Double など
+
+ - java.util
+   List, Map, Set, ArrayList, HashMap など
+
+ - java.time
+   LocalDate, LocalTime, ZonedDateTime など
+
+ - java.io / java.nio
+   File, InputStream, BufferedReader など
+
