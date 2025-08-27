@@ -282,6 +282,13 @@ int n = Integer.parseInt("123");  // 文字列→int
 # record
 **Java 16 で正式導入**された「データキャリア専用のクラス定義方法」  
 「**値を保持するだけのクラス**を、超簡潔に書ける構文」  
+getter が自動でつき、 setter はつかない
+
+## なぜ setter はないのか
+record は「不変（immutable）なデータを表すためのクラス」  
+フィールドはすべて **private final** で作られる  
+つまり**一度コンストラクタで値を入れたら変更できないためsetter を作る意味がない**  
+
 従来の書き方  
 ```
 public class CompletionRate {
@@ -318,6 +325,36 @@ public record CompletionRate(
     String payMethod,
     Duration durationMinutes) { }
 ```
+なので別クラスで値をとってこれる
+例）.success()、failure()...
+```
+public class CompletionRateStatFactory {
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+    //Statは型
+    public static Stat of(CompletionRate completionrate, String u) {
+
+        String unit = "metrics-kessai.completionrate-" + u;
+        //Stat はクラス名
+        return new Stat(
+                unit + "-" + completionrate.time().format(FORMATTER),
+                completionrate.time(),
+                unit,
+                "production",
+                Map.of(
+                        "total", completionrate.total(),
+                        "success", completionrate.success(),
+                        "failure", completionrate.failure(),
+                        "channel_cd", completionrate.channelCd(),
+                        "pay_method", completionrate.payMethod(),
+                        "duration_minutes", completionrate.durationMinutes(),
+                        "success_rate", completionrate.successRate()
+                        )
+        );
+    }
+}
+```
+
 
 ## private 
 外から直接アクセスできない（カプセル化）
@@ -354,6 +391,30 @@ scores.put("Charlie", 85);
 
 System.out.println(scores.get("Alice")); // 90
 ```
+
+# List
+Java の List は「順番付きで要素を保持できるコレクション」  
+ - 順番がある → 入れた順番を覚えている
+ - 重複を許す → 同じ値を複数入れられる
+ - インデックス番号（0から始まる）でアクセスできる
+
+```
+List<String> names = new ArrayList<>();
+
+names.add("Taro");
+names.add("Hanako");
+names.add("Jiro");
+
+System.out.println(names.get(0)); // "Taro"
+System.out.println(names.get(1)); // "Hanako"
+```
+
+## List と 配列の違い
+配列（String[]）は **サイズ固定（後から増やせない）**  
+List（ArrayList）は **可変（add/remove で増減できる）**  
+
+## ListとMapの違い
+<img width="1002" height="316" alt="image" src="https://github.com/user-attachments/assets/6796f042-6993-4b32-9fe2-f96dfb71f627" />
 
 # オブジェクトとは
 クラスから作られた実体（実際に動くもの） のこと  
