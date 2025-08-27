@@ -360,12 +360,15 @@ System.out.println(scores.get("Alice")); // 90
 クラスは「設計図」、オブジェクトは「その設計図から作られた製品」とよく例えられます。
 
 # ofメソッド
-Java 9+ で追加された不変コレクション生成のための便利メソッド  
+Java 9+ で追加された不変コレクション生成のための便利メソッド 
+**静的ファクトリーメソッド (static factory method)** の一種  
+**ある値（引数）から新しいインスタンスを生成する**という意味合いで使われます
 of メソッドは static メソッドとして以下に用意されています
  - List.of(...)  
  - Set.of(...)   
  - Map.of(...)  
-つまり「インスタンス化用のショートカット」として使えます  
+つまり「インスタンス化用のショートカット」として使えます
+他にもJava標準のMapとか以外でも**自分が作成したクラス**でも使えます  
 ```
 List<String> fruits = List.of("apple", "banana", "cherry");
 System.out.println(fruits); // [apple, banana, cherry]
@@ -380,6 +383,76 @@ Map<String, Integer> ages = Map.of(
 );
 System.out.println(ages); // {Alice=20, Bob=25, Charlie=30}
 ```
+
+例）
+```
+public static Stat of(...) {
+    return new Stat(...);
+}
+```
+of(...) メソッドは「Stat 型を返す」と宣言  
+new Stat(...) で実際に Stat インスタンスを作る  
+つまり、**メソッド宣言側と return 側の Stat は「型」と「クラス名」として同じもの**を指している  
+
+# static factory method （静的ファクトリーメソッド）
+**new の代わりにインスタンスを作る便利なメソッド**
+例）
+```
+User u = new User("Taro", 20);
+```
+「この引数は何を意味するの？」って分かりにくいことがある。  
+例）static factory method を使った書き方  　　
+```
+User u = User.of("Taro", 20);
+```
+static だから クラス名から直接呼べる。  
+of という名前のおかげで「Taro と 20 から User を作るんだな」と分かりやすい  
+
+# staticとは
+static = 「そのクラスの中で共通のもの」  
+ - static メソッド → クラス名.メソッド名() で呼べる
+ - static 変数 → クラス全体で1つだけの共通データ
+ - static クラス（ネストしたクラス） → 外側のクラスのインスタンスなしで使える
+
+例）インスタンスメソッドの場合  
+```
+public class Greeter {
+    public void sayHello() {
+        System.out.println("Hello!");
+    }
+}
+
+Greeter g = new Greeter(); // ← new で作る
+g.sayHello();              // ← インスタンスから呼ぶ
+```
+static メソッドの場合  
+```
+public class Greeter {
+    public static void sayHello() {
+        System.out.println("Hello!");
+    }
+}
+
+Greeter.sayHello();  // ← new しなくても呼べる！
+```
+static メソッドは クラス全体で共有されるので、  
+**個々のオブジェクトごとに違う値**を持たせることができません
+```
+public class User {
+    public static String name;
+
+    public static void sayHello() {
+        System.out.println("Hello, " + name);
+    }
+}
+
+User.name = "Taro";
+User.sayHello(); // Hello, Taro
+
+User.name = "Hanako";
+User.sayHello(); // Hello, Hanako ← Taro は消えてしまう！
+```
+**static は「共通の機能」にしか向いていない**
 
 # String 型ってなに？  
 String は Java に用意されている 文字列を扱うクラス  
